@@ -16,13 +16,24 @@
     <div class="pic"></div>
     <script>
         let url;
-        $.get("https://api.waifu.pics/nsfw/waifu", function(data, status) {
-            url=data["url"];
-            //console.log(url);
-            $(".pic").html("<img src='" + url + "'>");
-            $(".pic").append("<br/>")
-            $(".pic").append("<a href='"+url+"'>"+url+"</a>");
-        });
+        if (window.location.hash == "#nsfw") {
+            $.get("https://api.waifu.pics/nsfw/waifu", function(data, status) {
+                url=data["url"];
+                //console.log(url);
+                $(".pic").html("<img src='" + url + "'>");
+                $(".pic").append("<br/>")
+                $(".pic").append("<a href='"+url+"'>"+url+"</a>");
+            });
+        }
+        else {
+            $.get("https://api.waifu.pics/sfw/waifu", function (data, status) {
+                url = data["url"];
+                //console.log(url);
+                $(".pic").html("<img src='" + url + "'>");
+                $(".pic").append("<br/>")
+                $(".pic").append("<a href='" + url + "'>" + url + "</a>");
+            });
+        }
     </script>
 </body>
 
